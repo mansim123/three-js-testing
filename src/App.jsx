@@ -40,7 +40,7 @@ function App() {
     let loadedTextureTree;
     const glftLoader = new GLTFLoader();
 
-    glftLoader.load('../assets/scene/wind-neck.gltf', (gltfScene) => {
+    glftLoader.load('./assets/scene/wind-neck.gltf', (gltfScene) => {
       loadedModel = gltfScene;
       // console.log(loadedModel);
 
@@ -60,7 +60,7 @@ function App() {
       test.scene.add(gltfScene.scene);
     });
 
-    glftLoader.load('../assets/scene/wind-blade.gltf', (gltfScene) => {
+    glftLoader.load('./assets/scene/wind-blade.gltf', (gltfScene) => {
       loadedBlade = gltfScene;
       // console.log(loadedModel);
 
@@ -80,7 +80,7 @@ function App() {
       test.scene.add(gltfScene.scene);
     });
 
-    glftLoader.load('../assets/shiba/LowPollyTree.gltf', (treeScene) => {
+    glftLoader.load('./assets/shiba/LowPollyTree.gltf', (treeScene) => {
       loadedTree = treeScene;
       // console.log(loadedModel);
 
@@ -103,23 +103,20 @@ function App() {
       test.scene.add(treeScene.scene);
     });
 
-    glftLoader.load(
-      '../assets/scene/tree-textured.gltf',
-      (textureTreeScene) => {
-        loadedTextureTree = textureTreeScene;
-        // console.log(loadedModel);
+    glftLoader.load('./assets/scene/tree-textured.gltf', (textureTreeScene) => {
+      loadedTextureTree = textureTreeScene;
+      // console.log(loadedModel);
 
-        textureTreeScene.scene.rotation.y = Math.PI / 8;
-        textureTreeScene.scene.position.y = -5.5;
-        textureTreeScene.scene.position.x = 15;
-        textureTreeScene.scene.position.z = 25;
-        textureTreeScene.scene.scale.set(0.05, 0.05, 0.05);
+      textureTreeScene.scene.rotation.y = Math.PI / 8;
+      textureTreeScene.scene.position.y = -5.5;
+      textureTreeScene.scene.position.x = 15;
+      textureTreeScene.scene.position.z = 25;
+      textureTreeScene.scene.scale.set(0.05, 0.05, 0.05);
 
-        test.scene.add(textureTreeScene.scene);
-      }
-    );
+      test.scene.add(textureTreeScene.scene);
+    });
 
-    glftLoader.load('../assets/shiba/House.gltf', (gltfScene) => {
+    glftLoader.load('./assets/shiba/House.gltf', (gltfScene) => {
       loadedModel = gltfScene;
       // console.log(loadedModel);
 
