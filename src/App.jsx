@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import * as THREE from 'three';
 import { GUI } from 'dat.gui';
 // import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
-//import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 // import { VOXLoader } from 'three/examples/jsm/loaders/VOXLoader';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
@@ -48,25 +48,29 @@ function App() {
     let loadedTreeReflected;
     const glftLoader = new GLTFLoader();
 
-    // const objLoader = new OBJLoader();
-    // objLoader.load(
-    //   'assets/scene/Roundhouse.obj',
-    //   (object) => {
-    //     // (object.children[0] as THREE.Mesh).material = material
-    //     // object.traverse(function (child) {
-    //     //     if ((child as THREE.Mesh).isMesh) {
-    //     //         (child as THREE.Mesh).material = material
-    //     //     }
-    //     // })
-    //     scene.add(object);
-    //   },
-    //   (xhr) => {
-    //     console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //   }
-    // );
+    const objLoader = new OBJLoader();
+    objLoader.load(
+      'assets/scene/Roundhouse.obj',
+      (object) => {
+        // (object.children[0] as THREE.Mesh).material = material
+        // object.traverse(function (child) {
+        //     if ((child as THREE.Mesh).isMesh) {
+        //         (child as THREE.Mesh).material = material
+        //     }
+        // })
+        object.scale.set(0.02, 0.02, 0.02);
+        object.position.y = -5;
+        object.position.x = 14;
+        object.position.z = 11;
+        test.scene.add(object);
+      },
+      (xhr) => {
+        console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
 
     glftLoader.load(windNeck, (gltfScene) => {
       loadedModel = gltfScene;
