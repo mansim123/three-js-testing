@@ -9,6 +9,12 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 import SceneInit from './lib/SceneInit';
 
+import windNeck from '../assets/scene/wind-neck.gltf';
+import windBlade from '../assets/scene/wind-blade.gltf';
+import lowPollyTree from '../assets/shiba/LowPollyTree.gltf';
+import texturedTree from '../assets/scene/tree-textured.gltf';
+import houseModel from '../assets/shiba/House.gltf';
+
 function App() {
   useEffect(() => {
     const gui = new GUI();
@@ -40,7 +46,7 @@ function App() {
     let loadedTextureTree;
     const glftLoader = new GLTFLoader();
 
-    glftLoader.load('./assets/scene/wind-neck.gltf', (gltfScene) => {
+    glftLoader.load(windNeck, (gltfScene) => {
       loadedModel = gltfScene;
       // console.log(loadedModel);
 
@@ -60,7 +66,7 @@ function App() {
       test.scene.add(gltfScene.scene);
     });
 
-    glftLoader.load('./assets/scene/wind-blade.gltf', (gltfScene) => {
+    glftLoader.load(windBlade, (gltfScene) => {
       loadedBlade = gltfScene;
       // console.log(loadedModel);
 
@@ -80,7 +86,7 @@ function App() {
       test.scene.add(gltfScene.scene);
     });
 
-    glftLoader.load('./assets/shiba/LowPollyTree.gltf', (treeScene) => {
+    glftLoader.load(lowPollyTree, (treeScene) => {
       loadedTree = treeScene;
       // console.log(loadedModel);
 
@@ -103,7 +109,7 @@ function App() {
       test.scene.add(treeScene.scene);
     });
 
-    glftLoader.load('./assets/scene/tree-textured.gltf', (textureTreeScene) => {
+    glftLoader.load(texturedTree, (textureTreeScene) => {
       loadedTextureTree = textureTreeScene;
       // console.log(loadedModel);
 
@@ -116,7 +122,7 @@ function App() {
       test.scene.add(textureTreeScene.scene);
     });
 
-    glftLoader.load('./assets/shiba/House.gltf', (gltfScene) => {
+    glftLoader.load(houseModel, (gltfScene) => {
       loadedModel = gltfScene;
       // console.log(loadedModel);
 
