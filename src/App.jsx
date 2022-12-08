@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import * as THREE from 'three';
 import { GUI } from 'dat.gui';
 // import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
-// import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
+//import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 // import { VOXLoader } from 'three/examples/jsm/loaders/VOXLoader';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
@@ -13,6 +13,7 @@ import windNeck from '../assets/scene/wind-neck.gltf';
 import windBlade from '../assets/scene/wind-blade.gltf';
 import lowPollyTree from '../assets/shiba/LowPollyTree.gltf';
 import texturedTree from '../assets/scene/tree-textured.gltf';
+import treeReflected from '../assets/scene/tree-reflected.gltf';
 import houseModel from '../assets/shiba/House.gltf';
 
 function App() {
@@ -44,7 +45,28 @@ function App() {
     let loadedBlade;
     let loadedTree;
     let loadedTextureTree;
+    let loadedTreeReflected;
     const glftLoader = new GLTFLoader();
+
+    // const objLoader = new OBJLoader();
+    // objLoader.load(
+    //   'assets/scene/Roundhouse.obj',
+    //   (object) => {
+    //     // (object.children[0] as THREE.Mesh).material = material
+    //     // object.traverse(function (child) {
+    //     //     if ((child as THREE.Mesh).isMesh) {
+    //     //         (child as THREE.Mesh).material = material
+    //     //     }
+    //     // })
+    //     scene.add(object);
+    //   },
+    //   (xhr) => {
+    //     console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //   }
+    // );
 
     glftLoader.load(windNeck, (gltfScene) => {
       loadedModel = gltfScene;
@@ -100,12 +122,6 @@ function App() {
       treeScene.scene.children[0].children[0].children[0].material.color.g = 255;
       treeScene.scene.children[0].children[0].children[0].material.color.b = 0;
 
-      //console.log(gltfScene.scene.children[0].children[0].children);
-
-      // gltfScene.scene.children[0].children[1].material.color.r = 172;
-      // gltfScene.scene.children[0].children[1].material.color.g = 172;
-      // gltfScene.scene.children[0].children[1].material.color.b = 172;
-
       test.scene.add(treeScene.scene);
     });
 
@@ -120,6 +136,19 @@ function App() {
       textureTreeScene.scene.scale.set(0.05, 0.05, 0.05);
 
       test.scene.add(textureTreeScene.scene);
+    });
+
+    glftLoader.load(treeReflected, (TreeReflectedScene) => {
+      loadedTreeReflected = TreeReflectedScene;
+      // console.log(loadedModel);
+
+      TreeReflectedScene.scene.rotation.y = Math.PI / 8;
+      TreeReflectedScene.scene.position.y = -5.5;
+      TreeReflectedScene.scene.position.x = 25;
+      TreeReflectedScene.scene.position.z = 20;
+      TreeReflectedScene.scene.scale.set(0.05, 0.05, 0.05);
+
+      test.scene.add(TreeReflectedScene.scene);
     });
 
     glftLoader.load(houseModel, (gltfScene) => {
